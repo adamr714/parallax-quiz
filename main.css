@@ -15,7 +15,10 @@ body {
 button, input[type="text"] {
   padding: 5px;
   margin-right: 5px;
-  width: 131px;
+  display: block;
+  width: 100%;
+  height: 2.5em;
+  margin: 10px;
   font-family: 'Roboto', sans-serif;
 }
 
@@ -31,4 +34,3 @@ button:hover {
   border-radius: 5px;
 
 }
-

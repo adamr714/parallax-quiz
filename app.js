@@ -101,3 +101,9 @@ var quiz = {
 };
 
 
+
+$(document).ready(function() {
+        $("#hint").click(function() {
+            $("#hintInfo").fadeToggle();
+        });
+    });

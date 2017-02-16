@@ -91,7 +91,7 @@ button.HintButton {
 }
 
 .hintClueBox {
-/*  display: none;*/
+  display: none;
 }
 
 .hintClue {
@@ -106,3 +106,8 @@ button.HintButton {
 .hintText {
   font-weight: bold;
 }
+
+#hintInfo {
+    display: none;
+}
+

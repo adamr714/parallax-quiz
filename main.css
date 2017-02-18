@@ -21,6 +21,17 @@ button {
   font-family: 'Roboto', sans-serif;
 }
 
+.button_correct {
+  background-color: green;
+  color: white;
+}
+
+.button_wrong {
+  background-color: red;
+  color: white;
+}
+
+
 button:hover {
   cursor: pointer;
 }

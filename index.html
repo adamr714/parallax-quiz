@@ -1,118 +1,65 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<!--Meta Tags-->
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="A quiz app that tests your knowledge of Parallax: Warbands">
+	
 	<title>Parallax Quiz</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Roboto|Cinzel:400,900" rel="stylesheet">
-  <link rel="stylesheet" href="main.css">
+  	<link href="https://fonts.googleapis.com/css?family=Roboto|Cinzel:400,900" rel="stylesheet">
+  	<link rel="stylesheet" href="main.css">
 
-  <script type=""></script>
+   <script type="text/template" id="quiz-item">
+	   <li data-index="{{id}}"">
+			<div class="image">{{image}}</div>
+				<div class="question">{{question}}</div>
+				<div class="answers">
+					<button id="answer1" class="">{{answer1}}</button>
+					<button id="answer2" class="">{{answer2}}</button>
+					<button id="answer3" class="">{{answer3}}</button>
+					<button id="answer4" class="">{{answer4}}</button>
+				</div>	
+				<div id="hint" class="hint"><button class="HintButton">Hint!</button></div>
+				<div class="score">Score:</div>
+				<div id="hintInfo">
+				<p class="hintClue">{{hint}}</p>
+		    </div>
+		</li>		        
+	</script>
 
 </head>
 <body>
 	<main>
 		 <div class="quizContainer">
 				<h1>Do you know Parallax?</h1>
-				<div class="image"><img src="images/intro_image.png"></div>
+
+				<div id="quizParts">
+				</div>		
+<!-- 				<div class="image"><img src="images/intro_image.png"></div>
 		        <div class="question"><h2>Question Placeholder</h2></div>
 		        <div class="answers">
-					<button class="">Answer 1</button>
-					<button class="">Answer 2</button>
-					<button class="">Answer 3</button>
-					<button class="">Answer 4</button>
+					<button id="answer1" class="">Answer 1</button>
+					<button id="answer2" class="">Answer 2</button>
+					<button id="answer3" class="">Answer 3</button>
+					<button id="answer4" class="">Answer 4</button>
 				</div>	
 				<div id="hint" class="hint"><button class="HintButton">Hint!</button></div>
-			    <div class="score">Score: ##</div>
+			    <div class="score">Score:</div>
 		        <div id="hintInfo">
 		        	<p class="hintClue">Hint goes here</p>
-		        </div>
+		        </div> -->
 		</div>
 	</main>
 
-
-
-<!-- <div class="question">
-	<h2>What kind of game is Parallax?</h2>
-	<button class="">	Video Game</button>
-	<button class="">	Role-playing Game</button>
-	<button class="">	Miniatures Game</button>
-	<button class="">	Board Game</button>
-</div>
-
-<div class="question">
-	<h2>What kind of dice does Parallax use?</h2>
-	<button class="">	d6</button>
-	<button class="">	d10</button>
-	<button class="">	d20</button>
-	<button class="">	d2</button>
-</div>
-
-<div class="question">
-	<h2>How many races are currently available to play?</h2>
-	<button class="">	6</button>
-	<button class="">	7</button>
-	<button class="">	4</button>
-	<button class="">	2</button>
-</div>
-
-<div class="question">
-	<h2>How many paths (classes) are currently available to choose from as a primary path?</h2>
-	<button class="">	4</button>
-	<button class="">	5</button>
-	<button class="">	6</button>
-	<button class="">	7</button>
-</div>
-
-<div class="question">
-	<h2>Which race served as the royal guard for the Hadjen?</h2>
-	<button class="">	Tir</button>
-	<button class="">	Devoid</button>
-	<button class="">	Cayad</button>
-	<button class="">	Minotaur</button>
-</div>
-
-<div class="question">
-	<h2>Who is the leader of the Tir?</h2>
-	<button class="">	Damar</button>
-	<button class="">	Marax</button>
-	<button class="">	Kallan</button>
-	<button class="">	Bob</button>
-</div>
-
-<div class="question">
-	<h2>Which race uses totems?</h2>
-	<button class="">	Minotaur</button>
-	<button class="">	Sicarius</button>
-	<button class="">	Hadjen</button>
-	<button class="">	Devoid</button>
-</div>
-
-<div class="question">
-	<h2>What is the slang word for the Tir?</h2>
-	<button class="">	Meat Bag</button>
-	<button class="">	Magic User</button>
-	<button class="">	Firecracker </button>
-	<button class="">	Disposable</button>
-</div>
-
-<div class="question">
-	<h2>Which race favors Blood Magic?</h2>
-	<button class="">	Cayad </button>
-	<button class="">	Minotaur</button>
-	<button class="">	Hadjen</button>
-	<button class="">	Tir</button>
-</div>
-
-<div class="question">
-	<h2> What is the range of the magic spell?</h2>
-	<button class="">	Range of melee weapon</button>
-	<button class="">	1/2”</button>
-	<button class="">	1”</button>
-	<button class="">	Depends on who is casting it</button>
-</div>
- -->
 <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 <script type="text/javascript" src="app.js"></script>
 
 </body>
 </html>
+
+
+
+
+

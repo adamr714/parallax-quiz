@@ -10,7 +10,7 @@
 // 9. Give the ability to restart the quiz
 var quiz = {
     state: [{
-            image: '',
+            image: '/images/intro_image.png',
             question: 'What kind of game is Parallax?',
             answers: ['Video Game', 'Role-playing Game', 'Miniatures Game', 'Board Game'],
             correctAnswer: 2,
@@ -99,6 +99,62 @@ var quiz = {
 	correctAnswers: 0,
 	hintsUsed: 0
 };
+
+
+function Question(datum) {
+    this.image = datum.image;
+    this.question = datum.question;
+    this.answers = datum.answers;
+    this.correctAnswer = datum.correctAnswer;
+    this.hint = datum.hint;         
+}
+
+Question.prototype.checkAnswer = function(index) {
+    return index === this.correctAnswer;
+};
+
+Question.prototype.forEachAnswer = function(callback, context) {
+    this.answers.forEach(callback,context);
+};
+
+
+// State modification functions
+
+
+
+// Render functions
+var renderList = function(state, element) {
+    var itemsHTML = state.items.map(function(item, index) {
+        var html= $('#quiz-item').html()
+                        .replace('{{id}}', index)
+                        .replace('{{image}}', state.image);
+                        .replace('{{question}}', state.question);
+                        .replace('{{answer1}}', state.question);
+                        .replace('{{answer2}}', state.question);
+                        .replace('{{answer3}}', state.question);
+                        .replace('{{answer4}}', state.question);                      
+                        .replace('{{hint}}', state.hint);  
+        return html;
+    });
+    element.html(itemsHTML);
+};
+
+
+// Event listeners
+$('#answer1, #answer2, #answer3, #answer4').click(function () {
+   if (this.id == 'answer1') {
+      state.userAnswer = 1;
+    } 
+    else if (this.id == 'answer2') {
+      state.userAnswer = 2;
+    } 
+    else if (this.id == 'answer3') {
+      state.userAnswer = 3;
+    }
+    else if (this.id == 'answer4') {
+      state.userAnswer = 4;
+     }
+});
 
 
 

@@ -36,9 +36,26 @@ button:hover {
   cursor: pointer;
 }
 
+input {
+  padding: 5px;
+  margin-left: 20px;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  display: block;
+  width: 440px;
+  height: 2.5em;
+  font-family: 'Roboto', sans-serif;
+}
+
+input:hover {
+  cursor: pointer;
+}
 
 h2 {
   margin-left: 20px;
+  color: white;
+  font-size: 1.3em;
+  min-height: 2em;
 }
 
 .quizContainer {
@@ -84,8 +101,9 @@ img {
 
 .score {
   width: 210px;
-  float: left; 
+  float: left;
   text-align: right;
+  margin-top: 14px;
   margin-left: 20px;
   margin-bottom: 5px;
   font-family: 'Roboto', sans-serif;
@@ -120,5 +138,9 @@ button.HintButton {
 
 #hintInfo {
     display: none;
+}
+
+p {
+  margin-left: 20px;
 }
 

@@ -1,13 +1,5 @@
-// 1. Show Question and Answers
-// 2. SHow images
-// 3. Answers Should be in the form of a button
-// 3. Calculate Results
-// 4. Show Results during the quiz
 // 5. Show the correct answer if wrong
-// 6. Create a hint section
-// 7. Track the score
-// 8. At the end give the Results with a message (e.g. 100 point equals master of Parallax, 10 points equals a slave to the Hadjen masters)
-// 9. Give the ability to restart the quiz
+
 var quiz = {
     state: [{
             image: 'images/intro_image.png',
@@ -18,15 +10,15 @@ var quiz = {
             hint: 'You use \'Minatures\''
         },
         {
-            image: 'images/intro_image.png',
+            image: 'images/d10.png',
             question: 'What kind of dice does Parallax use?',
             answers: ['d6', 'd10', 'd20', 'd2'],
             correctAnswer: 1,
             userAnswer: null,
-            hint: 'It is more than 10'
+            hint: 'You\'ll always be a 10 to me'
         },
         {
-            image: 'images/intro_image.png',
+            image: 'images/races.png',
             question: 'How many races are currently available to play?',
             answers: ['6', '7', '4', '2'],
             correctAnswer: 0,
@@ -34,7 +26,7 @@ var quiz = {
             hint: 'More than 4, but less than 7'
         },
         {
-            image: 'images/intro_image.png',
+            image: 'images/minotaur.png',
             question: 'Which race served as the royal guard for the Hadjen?',
             answers: ['Tir', 'Devoid', 'Cayad', 'Minotaur'],
             correctAnswer: 3,
@@ -42,15 +34,15 @@ var quiz = {
             hint: 'Looks a lot like a bull'
         },
         {
-            image: 'images/intro_image.png',
+            image: 'images/marax.png',
             question: 'Who is the leader of the Tir?',
             answers: ['Damar', 'Marax', 'Kallan', 'Bob'],
             correctAnswer: 1,
             userAnswer: null,
-            hint: 'Rhymes with Paxax'
+            hint: 'Rhymes with Parax'
         },
         {
-            image: 'images/intro_image.png',
+            image: 'images/sicarius.png',
             question: 'Which race uses totems?',
             answers: ['Minotaur', 'Sicarius', 'Hadjen', 'Devoid'],
             correctAnswer: 1,
@@ -59,7 +51,7 @@ var quiz = {
         },
 
         {
-            image: 'images/intro_image.png',
+            image: 'images/marax.png',
             question: 'What is the slang word for the Tir?',
             answers: ['Meat Bag', 'Magic User', 'Firecracker', 'Disposable'],
             correctAnswer: 2,
@@ -68,7 +60,7 @@ var quiz = {
         },
 
         {
-            image: 'images/intro_image.png',
+            image: 'images/cayad.png',
             question: 'Which race favors Blood Magic?',
             answers: ['Cayad', 'Minotaur', 'Hadjen', 'Tir'],
             correctAnswer: 0,
@@ -77,7 +69,7 @@ var quiz = {
         },
 
         {
-            image: 'images/intro_image.png',
+            image: 'images/magic.png',
             question: 'What is the range of the Heal magic spell?',
             answers: ['Range of the Melee Weapon', 'Half-inch', 'One-inch', 'Depends on who is casting it'],
             correctAnswer: 0,
@@ -86,13 +78,21 @@ var quiz = {
         },
 
         {
-            image: '',
+            image: 'images/paths.png',
             question: 'How many paths (classes) are currently available to choose from as a primary path?',
             answers: ['4', '5', '6', '7'],
-            correctAnswer: 2,
+            correctAnswer: 1,
             userAnswer: null,
             hint: 'Between 5 &amp; 7'
-        },
+        }
+        // {
+        //     image: 'images/intro_image.png',
+        //     question: 'Thank you for playing.  Your final score is: " quiz.score',
+        //     answers: ['', '', '', ''],
+        //     correctAnswer: null,
+        //     userAnswer: null,
+        //     hint: null
+        // }
     ],
     currentQuestion: 0,
 	correctAnswers: 0,
@@ -123,16 +123,18 @@ var renderList = function(element) {
 };
 
 
-
 // Event listeners
 function displayCurrentQuestion() {
+ 
     renderList($('#quizParts'))
     
     $("#hint").click(function() {
             $("#hintInfo").fadeToggle();
     });
 
-
+    $("#hint").click(function() {
+           ++quiz.hintsUsed;
+        });
 
     $('#answer1, #answer2, #answer3, #answer4').click(function () {
         var question = quiz.state[quiz.currentQuestion];
@@ -149,27 +151,61 @@ function displayCurrentQuestion() {
         else if (this.id == 'answer4') {
           question.userAnswer = 3;
         }
-
-
-        console.log(question.userAnswer);
-        console.log(question.correctAnswer);
         
+        //Quiz Score
         if (question.userAnswer == question.correctAnswer) {
-            quiz.score = quiz.score +=1
+            ++quiz.score 
+        } 
+
+        quiz.currentQuestion++;
+
+        if(quiz.currentQuestion >= Object.keys(quiz.state).length) {
+            $('#quizParts').fadeOut(400, function() {
+                $('#quizScore').removeClass('hintClueBox');
+            });
+
+            $('#finalScore').replaceWith('<p>Your score is: <strong>' + quiz.score + '</strong> out of 10!</p>');
+            $('#hintsUsed').replaceWith('<p>You used: <strong>' + quiz.hintsUsed + '</strong> hints.</p>');
+
+            switch (quiz.score) {
+                case 0:
+                case 1: 
+                    $('#ranking').replaceWith('<p>You earned the ranking of: <br /><strong>Slave in the Hadjen’s Pit</strong></p>');
+                    break;
+                case 2:
+                case 3:
+                     $('#ranking').replaceWith('<p>You earned the ranking of: <br /><strong>Lost in the world of Parallax</strong></p>');
+                    break; 
+                case 4:
+                case 5:
+                     $('#ranking').replaceWith('<p>You earned the ranking of: <br /><strong>Not bad…but you are bound to be eaten by a Nharmyth!</strong></p>');
+                    break;
+                case 6:
+                case 7:
+                     $('#ranking').replaceWith('<p>You earned the ranking of: <br /><strong>You are on the road to knowledge</strong></p>');
+                    break;
+                case 8:
+                case 9:
+                     $('#ranking').replaceWith('<p>You earned the ranking of: <br /><strong>The Hadjen masters would be proud!</strong></p>');                
+                     break;
+                case 10:
+                     $('#ranking').replaceWith('<p>You earned the ranking of: <br /><strong>Master of Parallax</strong></p>');
+                     break;
+                default: 
+                    text = "Quiz is over";
+            }
         }
 
 
-        // if(question.userAnswer == question.correctAnswer) {
-            // return quiz.score++
-        // };
-        console.log(quiz.score);
-    
-        quiz.currentQuestion++;
+        console.log("Current Question: " + quiz.currentQuestion);
+        console.log("Number of Question: " + Object.keys(quiz.state).length);
+        console.log("Hints Used: " + quiz.hintsUsed);
+
+
         displayCurrentQuestion();
         
     });
 }
-
 
 $(document).ready(function() {
     displayCurrentQuestion();

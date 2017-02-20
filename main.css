@@ -144,3 +144,117 @@ p {
   margin-left: 20px;
 }
 
+
+@media screen and (max-width: 480px) {
+  body {
+    background-color: #C69C6D;
+    background-image: linear-gradient(#42210B, #C69C6D);
+    box-sizing: border-box;
+    font-family: 'Cinzel', sans-serif;
+  }
+
+  .quizContainer {
+      background-color: #A67C52;
+      border-radius: 10px;
+      border: 1px solid #fff;
+      margin-top:10px;
+      overflow: hidden;
+      max-width: 350px;
+  }
+
+  h1 {
+    text-align: center;
+    font-variant: small-caps;
+    font-size: 1.8em;
+  }
+
+  h2 {
+    margin-left: 17px;
+    color: white;
+    font-size: 1.1em;
+    min-height: 2em;
+  }
+
+  img {
+      border: 2px solid #fff;
+      box-shadow: 2px 2px #4e4d4d;
+      max-width: 70%
+  }
+
+  .image {
+      /* width: 442px; */
+      /* min-height: 225px; */
+      /* border: 0px solid #000; */
+      /* margin-left: auto; */
+      /* margin-right: auto; */
+      /* text-align: center; */
+      margin-bottom: -2em;
+  }
+
+.hint {
+  width: 40%;
+  float: left;
+  /*background-color: green;*/
+  height: 30px;
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+.score {
+  width: 40%;
+  float: left;
+  text-align: right;
+  margin-top: 14px;
+  margin-left: 20px;
+  margin-bottom: 5px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.5em;
+  font-weight: bold;
+  color: white;
+}
+
+.hintClue {
+  margin-left: 20px;
+  margin-top: 51px;
+  border: 1px solid #fff;
+  background-color: #3CB371;
+  max-width: 18em;
+  padding: 10px;
+}
+
+button {
+  padding: 5px;
+  margin-left: 20px;
+  margin-top: 5px;
+  display: block;
+  width: 19.2em;
+  height: 2.5em;
+  font-family: 'Roboto', sans-serif;
+}
+
+  img {
+      border: 2px solid #fff;
+      box-shadow: 2px 2px #4e4d4d;
+      max-width: 70%;
+      text-align: left;
+      margin-right: 90px;
+  }
+
+input {
+  padding: 5px;
+  margin-left: 20px;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  display: block;
+  width: 19.2em;
+  height: 2.5em;
+  font-family: 'Roboto', sans-serif;
+}
+
+p {
+  margin-left: 20px;
+  font-size: .9em;
+  line-height: 1.2em;
+}
+
+}

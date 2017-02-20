@@ -155,7 +155,10 @@ function displayCurrentQuestion() {
         //Quiz Score
         if (question.userAnswer == question.correctAnswer) {
             ++quiz.score 
-        } 
+        } else {
+        }
+
+
 
         quiz.currentQuestion++;
 
@@ -171,6 +174,7 @@ function displayCurrentQuestion() {
                 case 0:
                 case 1: 
                     $('#ranking').replaceWith('<p>You earned the ranking of: <br /><strong>Slave in the Hadjen’s Pit</strong></p>');
+                    $('#imgPlaceholder').replaceWith('<img clas="image" src="images/d10.png" />');
                     break;
                 case 2:
                 case 3:
@@ -195,7 +199,6 @@ function displayCurrentQuestion() {
                     text = "Quiz is over";
             }
         }
-
 
         console.log("Current Question: " + quiz.currentQuestion);
         console.log("Number of Question: " + Object.keys(quiz.state).length);

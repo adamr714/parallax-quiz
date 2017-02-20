@@ -15,6 +15,11 @@
 	   <div data-index="{{id}}">
 			<div class="image"><img src="{{image}}" /></div>
 				<div class="question"><h2>{{question}}</h2></div>
+				
+				<div id="hintInfo">
+					<p class="hintClue">{{hint}}</p>
+		    	</div>
+		    	
 				<div class="answers">
 					<button id="answer1" class="">{{answer1}}</button>
 					<button id="answer2" class="">{{answer2}}</button>
@@ -23,9 +28,9 @@
 				</div>	
 				<div id="hint" class="hint"><button class="HintButton">Hint!</button></div>
 				<div class="score">Score: {{score}}</div>
-				<div id="hintInfo">
-				<p class="hintClue">{{hint}}</p>
-		    </div>
+				<!-- <div id="hintInfo">
+					<p class="hintClue">{{hint}}</p>
+		    	</div> -->
 		</div>		        
 	</script>
 

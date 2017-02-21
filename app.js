@@ -179,7 +179,7 @@ function displayCurrentQuestion() {
                     break;
                 case 2:
                 case 3:
-                     $('#ranking').replaceWith('<p>You earned the ranking of: <br /><strong>Lost in the world of Parallax</strong></p>');
+                     $('#ranking').replaceWith('<p>You earned the ranking of: <br /><strong>Sicarius Scratching Pole</strong></p>');
                     break; 
                 case 4:
                 case 5:

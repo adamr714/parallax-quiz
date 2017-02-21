@@ -125,7 +125,7 @@ var renderList = function(element) {
 
 // Event listeners
 function displayCurrentQuestion() {
- 
+
     renderList($('#quizParts'))
     
     $("#hint").click(function() {
@@ -156,6 +156,7 @@ function displayCurrentQuestion() {
         if (question.userAnswer == question.correctAnswer) {
             ++quiz.score 
         } else {
+            // alert('Close...but the correct answer is: ' + question.correctAnswer);
         }
 
 
@@ -182,15 +183,15 @@ function displayCurrentQuestion() {
                     break; 
                 case 4:
                 case 5:
-                     $('#ranking').replaceWith('<p>You earned the ranking of: <br /><strong>Not bad…but you are bound to be eaten by a Nharmyth!</strong></p>');
+                     $('#ranking').replaceWith('<p>You earned the ranking of: <br /><strong>Nharmyth Bait!</strong></p>');
                     break;
                 case 6:
                 case 7:
-                     $('#ranking').replaceWith('<p>You earned the ranking of: <br /><strong>You are on the road to knowledge</strong></p>');
+                     $('#ranking').replaceWith('<p>You earned the ranking of: <br /><strong>Minotaur Sage</strong></p>');
                     break;
                 case 8:
                 case 9:
-                     $('#ranking').replaceWith('<p>You earned the ranking of: <br /><strong>The Hadjen masters would be proud!</strong></p>');                
+                     $('#ranking').replaceWith('<p>You earned the ranking of: <br /><strong>Devoid Warlord</strong></p>');                
                      break;
                 case 10:
                      $('#ranking').replaceWith('<p>You earned the ranking of: <br /><strong>Master of Parallax</strong></p>');

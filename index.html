@@ -19,7 +19,7 @@
 				<div id="hintInfo">
 					<p class="hintClue">{{hint}}</p>
 		    	</div>
-		    	
+
 				<div class="answers">
 					<button id="answer1" class="">{{answer1}}</button>
 					<button id="answer2" class="">{{answer2}}</button>
@@ -37,11 +37,26 @@
 </head>
 <body>
 	<main>
+		
 		 <div class="quizContainer">
 				<h1>Do you know Parallax?</h1>
 
-				<div id="quizParts"></div>
+				<!-- Start of Quiz Containter -->
+				<!-- <div id="quizStart">
+					
+					Welcome to the Parallax: Warbands quiz.  This quiz will tet your knowledge of the game and then give you a ranking to show how well you know Parallax.
 
+					Good luck!
+
+					<button onclick="displayCurrentQuestion()">Start Quiz</button>
+
+				</div> -->
+
+				<!-- Quiz Container -->
+				<div id="quizParts">
+				</div>
+
+				<!-- Score Container -->
 				<div id="quizScore" class="hintClueBox">
 					<div id="imgPlaceholder" class="image"><img src="images/intro_image.png" /></div>
 					<p>Congratulations on finishing the Parallax Quiz.</p>

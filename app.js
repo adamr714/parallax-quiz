@@ -101,9 +101,6 @@ var quiz = {
 };
 
 
-// State modification functions
-
-
 // Render functions
 var renderList = function(element) {
     // debugger;
@@ -121,6 +118,18 @@ var renderList = function(element) {
         .replace('{{hint}}', question.hint);  
     element.html(quizParameters);
 };
+
+function resetQuiz() {
+    quiz.currentQuestion = 0;
+    quiz.correctAnswers = 0;
+    quiz.score = 0;
+    quiz.hintsUsed = 0;
+    $('#quizScore').fadeOut(400, function() { 
+        $('#quizParts').show();
+        displayCurrentQuestion();
+    });
+}
+
 
 
 // Event listeners

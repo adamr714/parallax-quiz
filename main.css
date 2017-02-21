@@ -1,3 +1,7 @@
+html, body { 
+  min-height:100%
+}
+
 h1 {
   text-align: center;
   font-variant: small-caps;
@@ -12,7 +16,6 @@ body {
  /* background-color: #C69C6D;
   background-image: linear-gradient(#42210B, #C69C6D);*/
   background-image: linear-gradient(#023867, #f6f7f7);
-  height: 1000px;
   box-sizing: border-box;
   font-family: 'Cinzel', sans-serif;
 }

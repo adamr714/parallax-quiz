@@ -42,24 +42,28 @@
 				<h1>Do you know Parallax?</h1>
 
 				<!-- Start of Quiz Containter -->
-				<!-- <div id="quizStart">
+				<div id="quizStart">
+
+					<div id="imgPlaceholder" class="image"><img src="images/intro_image.png" /></div>
 					
-					Welcome to the Parallax: Warbands quiz.  This quiz will tet your knowledge of the game and then give you a ranking to show how well you know Parallax.
+					<h2>Welcome to the <br />Parallax:  Warbands quiz.</h2> 
 
-					Good luck!
+					<p>This quiz will test your knowledge of the game and then give you a ranking to show how well you know Parallax.</p>
 
-					<button onclick="displayCurrentQuestion()">Start Quiz</button>
+					<p>Good luck!</p>
 
-				</div> -->
+					<input type="button" value="Start Quiz" onclick="displayCurrentQuestion()">
+
+				</div>
 
 				<!-- Quiz Container -->
-				<div id="quizParts">
+				<div id="quizParts" class="hintClueBox">
 				</div>
 
 				<!-- Score Container -->
 				<div id="quizScore" class="hintClueBox">
 					<div id="imgPlaceholder" class="image"><img src="images/intro_image.png" /></div>
-					<p>Congratulations on finishing the Parallax Quiz.</p>
+					<h2>Congratulations on finishing the Parallax Quiz.</h2>
 					
 					<div id="finalScore"></div>
 					<div id="hintsUsed"></div>

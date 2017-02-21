@@ -65,7 +65,8 @@ input:hover {
 h2 {
   margin-left: 20px;
   color: black;
-  font-size: 1.3em;
+  font-size: 1.6em;
+  text-align: center;
   /*min-height: 2em;*/
 }
 
@@ -190,6 +191,7 @@ p {
     margin-left: 17px;
     color: white;
     font-size: 1.1em;
+    text-align: center;"
   }
 
   img {

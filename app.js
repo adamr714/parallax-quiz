@@ -125,8 +125,14 @@ var renderList = function(element) {
 
 // Event listeners
 function displayCurrentQuestion() {
-
+  
     renderList($('#quizParts'))
+
+     $('#quizStart').click(function(){
+        $('#quizStart').fadeOut(1000, function() {
+            $('#quizParts').removeClass('hintClueBox');
+        });
+     });
     
     $("#hint").click(function() {
             $("#hintInfo").fadeToggle();

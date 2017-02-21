@@ -49,7 +49,6 @@ var quiz = {
             userAnswer: null,
             hint: 'The look like cats ---- Sicarius'
         },
-
         {
             image: 'images/marax.png',
             question: 'What is the slang word for the Tir?',
@@ -58,7 +57,6 @@ var quiz = {
             userAnswer: null,
             hint: 'They go BOOM'
         },
-
         {
             image: 'images/cayad.png',
             question: 'Which race favors Blood Magic?',
@@ -85,15 +83,14 @@ var quiz = {
             userAnswer: null,
             hint: 'Between 4 &amp; 6'
         }
-        // {
-        //     image: 'images/intro_image.png',
-        //     question: 'Thank you for playing.  Your final score is: " quiz.score',
-        //     answers: ['', '', '', ''],
-        //     correctAnswer: null,
-        //     userAnswer: null,
-        //     hint: null
-        // }
     ],
+    ranking: {
+        0: {
+            rank: 'Slave in the Hadjen’s Pit',
+            image: 'images/d10.png'
+        } //Add other ranks
+
+    },    
     currentQuestion: 0,
 	correctAnswers: 0,
     score: 0,
@@ -130,8 +127,6 @@ function resetQuiz() {
     });
 }
 
-
-
 // Event listeners
 function displayCurrentQuestion() {
   
@@ -153,19 +148,7 @@ function displayCurrentQuestion() {
 
     $('#answer1, #answer2, #answer3, #answer4').click(function () {
         var question = quiz.state[quiz.currentQuestion];
-
-       if (this.id == 'answer1') {
-          question.userAnswer = 0;
-        } 
-        else if (this.id == 'answer2') {
-          question.userAnswer = 1;
-        } 
-        else if (this.id == 'answer3') {
-          question.userAnswer = 2;
-        }
-        else if (this.id == 'answer4') {
-          question.userAnswer = 3;
-        }
+        question.userAnswer = parseInt(this.id[this.id.length-1])-1;
         
         //Quiz Score
         if (question.userAnswer == question.correctAnswer) {
@@ -174,46 +157,50 @@ function displayCurrentQuestion() {
             // alert('Close...but the correct answer is: ' + question.correctAnswer);
         }
 
-
-
         quiz.currentQuestion++;
 
         if(quiz.currentQuestion >= Object.keys(quiz.state).length) {
+
             $('#quizParts').fadeOut(400, function() {
                 $('#quizScore').removeClass('hintClueBox');
+                $('#quizScore').show();
             });
+
 
             $('#finalScore').replaceWith('<p>Your score is: <strong>' + quiz.score + '</strong> out of 10!</p>');
             $('#hintsUsed').replaceWith('<p>You used: <strong>' + quiz.hintsUsed + '</strong> hints.</p>');
 
-            switch (quiz.score) {
-                case 0:
-                case 1: 
-                    $('#ranking').replaceWith('<p>You earned the ranking of: <br /><strong>Slave in the Hadjen’s Pit</strong></p>');
-                    $('#imgPlaceholder').replaceWith('<img clas="image" src="images/d10.png" />');
-                    break;
-                case 2:
-                case 3:
-                     $('#ranking').replaceWith('<p>You earned the ranking of: <br /><strong>Sicarius Scratching Pole</strong></p>');
-                    break; 
-                case 4:
-                case 5:
-                     $('#ranking').replaceWith('<p>You earned the ranking of: <br /><strong>Nharmyth Bait!</strong></p>');
-                    break;
-                case 6:
-                case 7:
-                     $('#ranking').replaceWith('<p>You earned the ranking of: <br /><strong>Minotaur Sage</strong></p>');
-                    break;
-                case 8:
-                case 9:
-                     $('#ranking').replaceWith('<p>You earned the ranking of: <br /><strong>Devoid Warlord</strong></p>');                
-                     break;
-                case 10:
-                     $('#ranking').replaceWith('<p>You earned the ranking of: <br /><strong>Master of Parallax</strong></p>');
-                     break;
-                default: 
-                    text = "Quiz is over";
-            }
+            $('#ranking').replaceWith('<p>You earned the ranking of: <br /><strong>' + ranking.rank + '</strong></p>');
+            $('#imgPlaceholder').replaceWith('<img clas="image" src="' + ranking.image + '" />');
+
+            // switch (quiz.score) {
+            //     case 0:
+            //     case 1: 
+            //         $('#ranking').replaceWith('<p>You earned the ranking of: <br /><strong>Slave in the Hadjen’s Pit</strong></p>');
+            //         $('#imgPlaceholder').replaceWith('<img clas="image" src="images/d10.png" />');
+            //         break;
+            //     case 2:
+            //     case 3:
+            //          $('#ranking').replaceWith('<p>You earned the ranking of: <br /><strong>Sicarius Scratching Pole</strong></p>');
+            //         break; 
+            //     case 4:
+            //     case 5:
+            //          $('#ranking').replaceWith('<p>You earned the ranking of: <br /><strong>Nharmyth Bait!</strong></p>');
+            //         break;
+            //     case 6:
+            //     case 7:
+            //          $('#ranking').replaceWith('<p>You earned the ranking of: <br /><strong>Minotaur Sage</strong></p>');
+            //         break;
+            //     case 8:
+            //     case 9:
+            //          $('#ranking').replaceWith('<p>You earned the ranking of: <br /><strong>Devoid Warlord</strong></p>');                
+            //          break;
+            //     case 10:
+            //          $('#ranking').replaceWith('<p>You earned the ranking of: <br /><strong>Master of Parallax</strong></p>');
+            //          break;
+            //     default: 
+            //         text = "Quiz is over";
+            // }
         }
 
         console.log("Current Question: " + quiz.currentQuestion);

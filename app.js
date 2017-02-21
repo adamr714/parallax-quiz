@@ -83,7 +83,7 @@ var quiz = {
             answers: ['4', '5', '6', '7'],
             correctAnswer: 1,
             userAnswer: null,
-            hint: 'Between 5 &amp; 7'
+            hint: 'Between 4 &amp; 6'
         }
         // {
         //     image: 'images/intro_image.png',

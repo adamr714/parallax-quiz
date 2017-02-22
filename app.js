@@ -1,5 +1,4 @@
 // 5. Show the correct answer if wrong
-
 var quiz = {
     state: [{
             image: 'images/intro_image.png',
@@ -88,13 +87,52 @@ var quiz = {
         0: {
             rank: 'Slave in the Hadjen’s Pit',
             image: 'images/d10.png'
-        } //Add other ranks
-
-    },    
+        },
+        1: {
+            rank: 'Slave in the Hadjen’s Pit',
+            image: 'images/d10.png'
+        },
+        2: {
+            rank: 'Sicarius Scratching Pole',
+            image: 'images/d10.png'
+        },
+        3: {
+            rank: 'Sicarius Scratching Pole',
+            image: 'images/d10.png'
+        },
+        4: {
+            rank: 'Nharmyth Bait!',
+            image: 'images/d10.png'
+        },
+        5: {
+            rank: 'Nharmyth Bait!',
+            image: 'images/d10.png'
+        },
+        6: {
+            rank: 'Minotaur Sage',
+            image: 'images/d10.png'
+        },
+        7: {
+            rank: 'Minotaur Sage',
+            image: 'images/d10.png'
+        },
+        8: {
+            rank: 'Devoid Warlord',
+            image: 'images/d10.png'
+        },
+        9: {
+            rank: 'Devoid Warlord',
+            image: 'images/d10.png'
+        },
+        10: {
+            rank: 'Master of Parallax<',
+            image: 'images/d10.png'
+        }
+    },
     currentQuestion: 0,
-	correctAnswers: 0,
+    correctAnswers: 0,
     score: 0,
-	hintsUsed: 0
+    hintsUsed: 0
 };
 
 
@@ -110,113 +148,77 @@ var renderList = function(element) {
         .replace('{{answer1}}', question.answers[0])
         .replace('{{answer2}}', question.answers[1])
         .replace('{{answer3}}', question.answers[2])
-        .replace('{{answer4}}', question.answers[3]) 
-        .replace('{{score}}', quiz.score)                              
-        .replace('{{hint}}', question.hint);  
+        .replace('{{answer4}}', question.answers[3])
+        .replace('{{score}}', quiz.score)
+        .replace('{{hint}}', question.hint);
     element.html(quizParameters);
 };
+
+// Event listeners
+function displayCurrentQuestion() {
+
+    renderList($('#quizParts'))
+
+    $('#quizStart').click(function() {
+        $('#quizStart').fadeOut(1000, function() {
+            $('#quizParts').removeClass('hintClueBox');
+        });
+    });
+
+    $("#hint").click(function() {
+        $("#hintInfo").fadeToggle();
+    });
+
+    $("#hint").click(function() {
+        ++quiz.hintsUsed;
+    });
+
+    $('#answer1, #answer2, #answer3, #answer4').click(function() {
+        var question = quiz.state[quiz.currentQuestion];
+        question.userAnswer = parseInt(this.id[this.id.length - 1]) - 1;
+
+        if (question.userAnswer == question.correctAnswer) {
+            quiz.score++
+        }
+
+        quiz.currentQuestion++;
+
+        quizScore();
+    });
+}
+
+function quizScore() {
+    if (quiz.currentQuestion >= Object.keys(quiz.state).length) {
+
+        $('#quizParts').fadeOut(400, function() {
+            $('#quizScore').removeClass('hintClueBox');
+            $('#quizScore').show();
+        });
+
+        $('#finalScore').replaceWith('<p>Your score is: <strong>' + quiz.score + '</strong> out of 10!</p>');
+        $('#hintsUsed').replaceWith('<p>You used: <strong>' + quiz.hintsUsed + '</strong> hints.</p>');
+
+        var ranking = quiz.ranking[quiz.score];
+
+        $('#ranking').replaceWith('<p>You earned the ranking of: <br /><strong>' + ranking.rank + '</strong></p>');
+        $('#imgPlaceholder').replaceWith('<img clas="image" src="' + ranking.image + '" />');
+    }
+
+    displayCurrentQuestion();
+}
 
 function resetQuiz() {
     quiz.currentQuestion = 0;
     quiz.correctAnswers = 0;
     quiz.score = 0;
     quiz.hintsUsed = 0;
-    $('#quizScore').fadeOut(400, function() { 
+    $('#quizScore').fadeOut(400, function() {
         $('#quizParts').show();
         displayCurrentQuestion();
     });
 }
 
-// Event listeners
-function displayCurrentQuestion() {
-  
-    renderList($('#quizParts'))
-
-     $('#quizStart').click(function(){
-        $('#quizStart').fadeOut(1000, function() {
-            $('#quizParts').removeClass('hintClueBox');
-        });
-     });
-    
-    $("#hint").click(function() {
-            $("#hintInfo").fadeToggle();
-    });
-
-    $("#hint").click(function() {
-           ++quiz.hintsUsed;
-        });
-
-    $('#answer1, #answer2, #answer3, #answer4').click(function () {
-        var question = quiz.state[quiz.currentQuestion];
-        question.userAnswer = parseInt(this.id[this.id.length-1])-1;
-        
-        //Quiz Score
-        if (question.userAnswer == question.correctAnswer) {
-            ++quiz.score 
-        } else {
-            // alert('Close...but the correct answer is: ' + question.correctAnswer);
-        }
-
-        quiz.currentQuestion++;
-
-        if(quiz.currentQuestion >= Object.keys(quiz.state).length) {
-
-            $('#quizParts').fadeOut(400, function() {
-                $('#quizScore').removeClass('hintClueBox');
-                $('#quizScore').show();
-            });
-
-
-            $('#finalScore').replaceWith('<p>Your score is: <strong>' + quiz.score + '</strong> out of 10!</p>');
-            $('#hintsUsed').replaceWith('<p>You used: <strong>' + quiz.hintsUsed + '</strong> hints.</p>');
-
-            $('#ranking').replaceWith('<p>You earned the ranking of: <br /><strong>' + ranking.rank + '</strong></p>');
-            $('#imgPlaceholder').replaceWith('<img clas="image" src="' + ranking.image + '" />');
-
-            // switch (quiz.score) {
-            //     case 0:
-            //     case 1: 
-            //         $('#ranking').replaceWith('<p>You earned the ranking of: <br /><strong>Slave in the Hadjen’s Pit</strong></p>');
-            //         $('#imgPlaceholder').replaceWith('<img clas="image" src="images/d10.png" />');
-            //         break;
-            //     case 2:
-            //     case 3:
-            //          $('#ranking').replaceWith('<p>You earned the ranking of: <br /><strong>Sicarius Scratching Pole</strong></p>');
-            //         break; 
-            //     case 4:
-            //     case 5:
-            //          $('#ranking').replaceWith('<p>You earned the ranking of: <br /><strong>Nharmyth Bait!</strong></p>');
-            //         break;
-            //     case 6:
-            //     case 7:
-            //          $('#ranking').replaceWith('<p>You earned the ranking of: <br /><strong>Minotaur Sage</strong></p>');
-            //         break;
-            //     case 8:
-            //     case 9:
-            //          $('#ranking').replaceWith('<p>You earned the ranking of: <br /><strong>Devoid Warlord</strong></p>');                
-            //          break;
-            //     case 10:
-            //          $('#ranking').replaceWith('<p>You earned the ranking of: <br /><strong>Master of Parallax</strong></p>');
-            //          break;
-            //     default: 
-            //         text = "Quiz is over";
-            // }
-        }
-
-        console.log("Current Question: " + quiz.currentQuestion);
-        console.log("Number of Question: " + Object.keys(quiz.state).length);
-        console.log("Hints Used: " + quiz.hintsUsed);
-
-
-        displayCurrentQuestion();
-        
-    });
-}
 
 $(document).ready(function() {
     displayCurrentQuestion();
 });
-
-
-
-

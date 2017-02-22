@@ -35,12 +35,12 @@ button {
   box-shadow: 2px 2px 4px #000;
 }
 
-.button_correct {
+.buttonCorrect {
   background-color: green;
   color: white;
 }
 
-.button_wrong {
+.buttonWrong {
   background-color: red;
   color: white;
 }

@@ -157,39 +157,58 @@ var renderList = function(element) {
 // Event listeners
 function displayCurrentQuestion() {
 
-    renderList($('#quizParts'))
+    if (quiz.currentQuestion < quiz.state.length) {
 
-    $('#quizStart').click(function() {
-        $('#quizStart').fadeOut(1000, function() {
-            $('#quizParts').removeClass('hintClueBox');
+
+        renderList($('#quizParts'))
+
+        $('#quizStart').click(function() {
+            $('#quizStart').fadeOut(1000, function() {
+                $('#quizParts').removeClass('hintClueBox');
+            });
         });
-    });
 
-    $("#hint").click(function() {
-        $("#hintInfo").fadeToggle();
-    });
+        $("#hint").click(function() {
+            $("#hintInfo").fadeToggle();
+        });
 
-    $("#hint").click(function() {
-        ++quiz.hintsUsed;
-    });
+        $("#hint").click(function() {
+            ++quiz.hintsUsed;
+        });
 
-    $('#answer1, #answer2, #answer3, #answer4').click(function() {
-        var question = quiz.state[quiz.currentQuestion];
-        question.userAnswer = parseInt(this.id[this.id.length - 1]) - 1;
+        $('#answer0, #answer1, #answer2, #answer3').click(function() {
+            var question = quiz.state[quiz.currentQuestion];
+            question.userAnswer = parseInt(this.id[this.id.length - 1]);
 
-        if (question.userAnswer == question.correctAnswer) {
-            quiz.score++
-        }
+            if (question.userAnswer == question.correctAnswer) {
+                quiz.score++;
+                quiz.currentQuestion++;
+                quizScore();
+                displayCurrentQuestion()
+            } else {
+                revealAnswer();
+            }
 
-        quiz.currentQuestion++;
+        });
+    }
+}
+
+
+function revealAnswer() {
+    var currentQuestion = quiz.state[quiz.currentQuestion];
+    $('#answer' + currentQuestion.correctAnswer).addClass('buttonCorrect');
+    $('#answer' + currentQuestion.userAnswer).addClass('buttonWrong');
+
+    setTimeout(function() {
 
         quizScore();
-    });
+        displayCurrentQuestion();
+    }, 1500);
+    quiz.currentQuestion++;
 }
 
 function quizScore() {
     if (quiz.currentQuestion >= Object.keys(quiz.state).length) {
-
         $('#quizParts').fadeOut(400, function() {
             $('#quizScore').removeClass('hintClueBox');
             $('#quizScore').show();
@@ -203,8 +222,6 @@ function quizScore() {
         $('#ranking').replaceWith('<p>You earned the ranking of: <br /><strong>' + ranking.rank + '</strong></p>');
         $('#imgPlaceholder').replaceWith('<img clas="image" src="' + ranking.image + '" />');
     }
-
-    displayCurrentQuestion();
 }
 
 function resetQuiz() {

@@ -125,7 +125,7 @@ var quiz = {
             image: 'images/d10.png'
         },
         10: {
-            rank: 'Master of Parallax<',
+            rank: 'Master of Parallax',
             image: 'images/d10.png'
         }
     },
@@ -135,6 +135,16 @@ var quiz = {
     hintsUsed: 0
 };
 
+function resetQuiz() {
+    quiz.currentQuestion = 0;
+    quiz.correctAnswers = 0;
+    quiz.score = 0;
+    quiz.hintsUsed = 0;
+    $('#quizScore').fadeOut(400, function() {
+        $('#quizParts').show();
+        displayCurrentQuestion();
+    });
+}
 
 // Render functions
 var renderList = function(element) {
@@ -203,7 +213,7 @@ function revealAnswer() {
 
         quizScore();
         displayCurrentQuestion();
-    }, 1500);
+    }, 750);
     quiz.currentQuestion++;
 }
 
@@ -223,18 +233,6 @@ function quizScore() {
         $('#imgPlaceholder').replaceWith('<img clas="image" src="' + ranking.image + '" />');
     }
 }
-
-function resetQuiz() {
-    quiz.currentQuestion = 0;
-    quiz.correctAnswers = 0;
-    quiz.score = 0;
-    quiz.hintsUsed = 0;
-    $('#quizScore').fadeOut(400, function() {
-        $('#quizParts').show();
-        displayCurrentQuestion();
-    });
-}
-
 
 $(document).ready(function() {
     displayCurrentQuestion();
